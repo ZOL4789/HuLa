@@ -1,5 +1,12 @@
 
 
+## [3.0.1](https://github.com/ZOL4789/HuLa/compare/v3.0.0...v3.0.1) (2024-10-26)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* **asset:** :bug: 3 ([971dfdd](https://github.com/ZOL4789/HuLa/commit/971dfdd2ad8f38abcf184b677ad7960a0d6f52ee))
+
 ## [3.0.0](https://github.com/ZOL4789/HuLa/compare/v2.5.0...v3.0.0) (2024-10-26)
 
 
