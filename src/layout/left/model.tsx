@@ -163,16 +163,17 @@ export const CheckUpdate = defineComponent(() => {
   }
 
   /* 记录检测更新的版本 */
-  let lastVersion: string | null = null
 
   const getCommitLog = (url: string, isNew = false) => {
     fetch(url).then((res) => {
+      console.log(res)
       if (!res.ok) {
         commitLog.value = [{ message: '获取更新日志失败，请配置token后再试', icon: 'cloudError' }]
         loading.value = false
         return
       }
       res.json().then(async (data) => {
+        console.log(data)
         isNew ? (newVersionTime.value = data.created_at) : (versionTime.value = data.created_at)
         await nextTick(() => {
           // 使用正则表达式提取 * 号后面的内容
@@ -201,58 +202,24 @@ export const CheckUpdate = defineComponent(() => {
 
   const handleUpdate = async () => {
     window.$message.warning('更新功能暂未开放，敬请期待, 请到github或gitee下载最新版本')
-    const update = await check({
-      target: 'macOs'
-    })
-    if (update?.available) {
+    const update = await check()
+    if (update?.available && window.confirm('确定更新吗')) {
       await update.downloadAndInstall()
       await relaunch()
     }
   }
-  const checkUpdate = () => {
-    const url = `https://gitee.com/api/v5/repos/HuLaSpark/HuLa/tags?access_token=${import.meta.env.VITE_GITEE_TOKEN}&sort=name&direction=desc&page=1&per_page=1`
-    if (lastVersion && lastVersion === `v${pkg.version}`) {
+  const checkUpdate = async () => {
+    const update = await check()
+    checkLoading.value = true
+    // TODO 处理网络未连接情况
+    if (!update?.available) {
       window.$message.success('当前已是最新版本')
+      checkLoading.value = false
       return
     }
-    checkLoading.value = true
-    fetch(url).then((res) => {
-      res
-        .json()
-        .then(async (data) => {
-          if (data[0].name === `v${pkg.version}`) {
-            setTimeout(() => {
-              window.$message.success('当前已是最新版本')
-              lastVersion = `v${pkg.version}`
-              checkLoading.value = false
-            }, 600)
-          } else {
-            setTimeout(() => {
-              let url = `https://gitee.com/api/v5/repos/HuLaSpark/HuLa/tags?access_token=${import.meta.env.VITE_GITEE_TOKEN}&sort=name&direction=asc&page=1`
-              fetch(url).then((res) => {
-                res.json().then(async (data) => {
-                  const allVersion = [] as number[]
-                  data.forEach((item: any) => {
-                    // 只获取item.name中[1,4]的内容
-                    allVersion.push(Number(item.name.slice(1, 4)))
-                  })
-                  newVersion.value = `v${Math.max(...allVersion)}.0`
-                  url = `https://gitee.com/api/v5/repos/HuLaSpark/HuLa/releases/tags/${newVersion.value}?access_token=${import.meta.env.VITE_GITEE_TOKEN}`
-                  getCommitLog(url, true)
-                  text.value = '立即更新'
-                  checkLoading.value = false
-                })
-              })
-              window.$message.success('有新版本发布，请下载最新版本')
-              // TODO 获取最新版本的提交日志，并且更换按钮文字为下载最新版本 (nyh -> 2024-07-11 22:20:33)
-            }, 1200)
-          }
-        })
-        .catch(() => {
-          checkLoading.value = false
-          window.$message.error('请检查配置，配置好token后再试')
-        })
-    })
+    text.value = '立即更新'
+    checkLoading.value = false
+    newVersion.value = update?.version
   }
 
   const init = () => {

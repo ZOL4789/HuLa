@@ -5,6 +5,7 @@
     "windows",
     "linux"
   ],
+  "windows":["home"],
   "permissions": [
     "updater:default",
     "updater:allow-check",
