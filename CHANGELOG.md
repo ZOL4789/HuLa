@@ -1,5 +1,7 @@
 
 
+## [2.4.5](https://github.com/ZOL4789/HuLa/compare/v2.4.4...v2.4.5) (2024-10-26)
+
 ## [v2.4.4](https://github.com/ZOL4789/HuLa/compare/2.4.3...v2.4.4) (2024-10-26)
 
 
