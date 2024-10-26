@@ -1,5 +1,13 @@
 
 
+## [2.4.0](https://github.com/ZOL4789/HuLa/compare/v2.5.0...v2.4.0) (2024-10-26)
+
+
+### ✨ Features | 新功能
+
+* **asset:** :sparkles: 1 ([b5f5d4e](https://github.com/ZOL4789/HuLa/commit/b5f5d4e01d7521eef6b436b55cb7721d6db47d14))
+* **asset:** :sparkles: 123 ([3bc41d8](https://github.com/ZOL4789/HuLa/commit/3bc41d8233aa52b4adaeac831d6f7b173491c187))
+
 ## [2.5.0](https://github.com/ZOL4789/HuLa/compare/v2.4.12...v2.5.0) (2024-10-26)
 
 
