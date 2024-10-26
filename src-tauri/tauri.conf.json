@@ -28,6 +28,7 @@
   },
   "plugins": {
     "updater": {
+      "active": true,
       "window": {
         "installMode": "passive"
       },

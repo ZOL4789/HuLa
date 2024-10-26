@@ -15,8 +15,7 @@
     "createUpdaterArtifacts": true,
     "active": true,
     "targets": [
-      "dmg",
-      "updater"
+      "app"
     ],
     "icon": [
       "icons/macos/32x32.png",
