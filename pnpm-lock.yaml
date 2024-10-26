@@ -26,6 +26,9 @@ importers:
       '@tauri-apps/plugin-process':
         specifier: 2.0.0
         version: 2.0.0
+      '@tauri-apps/plugin-updater':
+        specifier: ~2
+        version: 2.0.0
       axios:
         specifier: ^1.7.4
         version: 1.7.4
@@ -1199,6 +1202,9 @@ packages:
 
   '@tauri-apps/plugin-process@2.0.0':
     resolution: {integrity: sha512-OYzi0GnkrF4NAnsHZU7U3tjSoP0PbeAlO7T1Z+vJoBUH9sFQ1NSLqWYWQyf8hcb3gVWe7P1JggjiskO+LST1ug==}
+
+  '@tauri-apps/plugin-updater@2.0.0':
+    resolution: {integrity: sha512-N0cl71g7RPr7zK2Fe5aoIwzw14NcdLcz7XMGFWZVjprsqgDRWoxbnUkknyCQMZthjhGkppCd/wN2MIsUz+eAhQ==}
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
@@ -5470,6 +5476,10 @@ snapshots:
       '@tauri-apps/api': 2.0.2
 
   '@tauri-apps/plugin-process@2.0.0':
+    dependencies:
+      '@tauri-apps/api': 2.0.2
+
+  '@tauri-apps/plugin-updater@2.0.0':
     dependencies:
       '@tauri-apps/api': 2.0.2
 
