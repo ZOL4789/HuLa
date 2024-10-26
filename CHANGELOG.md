@@ -1,5 +1,12 @@
 
 
+## [3.0.3](https://github.com/ZOL4789/HuLa/compare/v3.0.2...v3.0.3) (2024-10-26)
+
+
+### ✨ Features | 新功能
+
+* **asset:** :sparkles: 3.0.3 ([4c96bed](https://github.com/ZOL4789/HuLa/commit/4c96bed0305dd05408abb43e7410fa5b519b36f5))
+
 ## [3.0.2](https://github.com/ZOL4789/HuLa/compare/v3.0.1...v3.0.2) (2024-10-26)
 
 
