@@ -8,12 +8,12 @@
     "pnpm": ">=8.10.0"
   },
   "repository": {
-    "url": "https://github.com/HuLaSpark/HuLa.git"
+    "url": "https://github.com/ZOL4789/HuLa.git"
   },
   "author": {
     "name": "nongyehong",
     "email": "2439646234@qq.com",
-    "url": "https://github.com/HuLaSpark/HuLa"
+    "url": "https://github.com/ZOL4789/HuLa"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
