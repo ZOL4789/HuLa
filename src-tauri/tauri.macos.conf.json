@@ -14,7 +14,7 @@
     ],   
     "active": true,
     "targets": [
-      "dmg"
+      "app"
     ],
     "icon": [
       "icons/macos/32x32.png",
