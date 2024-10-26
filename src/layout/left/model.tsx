@@ -20,6 +20,8 @@ import pkg from '~/package.json'
 import { handRelativeTime } from '@/utils/Day.ts'
 import './style.scss'
 import { type } from '@tauri-apps/plugin-os'
+import { check } from '@tauri-apps/plugin-updater'
+import { relaunch } from '@tauri-apps/plugin-process'
 
 const formRef = ref<FormInst | null>()
 const formValue = ref({
@@ -197,10 +199,16 @@ export const CheckUpdate = defineComponent(() => {
     })
   }
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     window.$message.warning('更新功能暂未开放，敬请期待, 请到github或gitee下载最新版本')
+    const update = await check({
+      target: 'macOs'
+    })
+    if (update?.available) {
+      await update.downloadAndInstall()
+      await relaunch()
+    }
   }
-
   const checkUpdate = () => {
     const url = `https://gitee.com/api/v5/repos/HuLaSpark/HuLa/tags?access_token=${import.meta.env.VITE_GITEE_TOKEN}&sort=name&direction=desc&page=1&per_page=1`
     if (lastVersion && lastVersion === `v${pkg.version}`) {
