@@ -11,7 +11,8 @@
   "bundle": {
     "resources": [
       "tray"
-    ],
+    ],   
+    "createUpdaterArtifacts": true,
     "active": true,
     "targets": [
       "dmg"
