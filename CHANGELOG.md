@@ -1,5 +1,16 @@
 
 
+## [2.4.12](https://github.com/ZOL4789/HuLa/compare/v2.4.11...v2.4.12) (2024-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **asset:** a
+
+### ✨ Features | 新功能
+
+* **asset:** :sparkles: sads ([9e1b499](https://github.com/ZOL4789/HuLa/commit/9e1b499b41a4688da92eb08125cc414e10b5d177))
+
 ## [2.4.11](https://github.com/ZOL4789/HuLa/compare/v2.4.10...v2.4.11) (2024-10-26)
 
 
