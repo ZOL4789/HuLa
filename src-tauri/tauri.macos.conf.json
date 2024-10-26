@@ -12,10 +12,9 @@
     "resources": [
       "tray"
     ],   
-    "createUpdaterArtifacts": true,
     "active": true,
     "targets": [
-      "app"
+      "dmg"
     ],
     "icon": [
       "icons/macos/32x32.png",
