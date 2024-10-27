@@ -165,37 +165,42 @@ export const CheckUpdate = defineComponent(() => {
   /* 记录检测更新的版本 */
 
   const getCommitLog = (url: string, isNew = false) => {
-    fetch(url).then((res) => {
-      if (!res.ok) {
-        commitLog.value = [{ message: '获取更新日志失败，请配置token后再试', icon: 'cloudError' }]
-        loading.value = false
-        return
-      }
-      res.json().then(async (data) => {
-        isNew ? (newVersionTime.value = data.created_at) : (versionTime.value = data.created_at)
-        await nextTick(() => {
-          // 使用正则表达式提取 * 号后面的内容
-          const regex = /\* (.+)/g
-          let match
-          const logs = []
-          while ((match = regex.exec(data.body)) !== null) {
-            logs.push(match[1])
-          }
-          const processedLogs = logs.map((commit) => {
-            // 获取最后一个 : 号的位置
-            const lastColonIndex = commit.lastIndexOf(':')
-            // 截取最后一个 : 号后的内容
-            const message = lastColonIndex !== -1 ? commit.substring(lastColonIndex + 1).trim() : commit
-            return {
-              message: message,
-              icon: mapCommitType(commit) || 'alien-monster'
-            }
-          })
-          isNew ? (newCommitLog.value = processedLogs) : (commitLog.value = processedLogs)
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) {
+          commitLog.value = [{ message: '获取更新日志失败，请配置token后再试', icon: 'cloudError' }]
           loading.value = false
+          return
+        }
+        res.json().then(async (data) => {
+          isNew ? (newVersionTime.value = data.created_at) : (versionTime.value = data.created_at)
+          await nextTick(() => {
+            // 使用正则表达式提取 * 号后面的内容
+            const regex = /\* (.+)/g
+            let match
+            const logs = []
+            while ((match = regex.exec(data.body)) !== null) {
+              logs.push(match[1])
+            }
+            const processedLogs = logs.map((commit) => {
+              // 获取最后一个 : 号的位置
+              const lastColonIndex = commit.lastIndexOf(':')
+              // 截取最后一个 : 号后的内容
+              const message = lastColonIndex !== -1 ? commit.substring(lastColonIndex + 1).trim() : commit
+              return {
+                message: message,
+                icon: mapCommitType(commit) || 'alien-monster'
+              }
+            })
+            isNew ? (newCommitLog.value = processedLogs) : (commitLog.value = processedLogs)
+            loading.value = false
+          })
         })
       })
-    })
+      .catch(() => {
+        loading.value = false
+        window.$message.error('获取更新失败')
+      })
   }
 
   const handleUpdate = async () => {
